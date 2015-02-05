@@ -2,9 +2,6 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -15,7 +12,22 @@ $app->get('/', function () use ($app) {
 ;
 
 $app->get('/{username}', function ($username) use ($app) {
-      var_dump($username); die;
+    $timeline = $app['tweets_repository']->findTimelineByUsername($username);
+    $channel  = new \Service\RSS\Channel();
+    $channel->setTitle("Twitter timeline / {$username}")
+        ->setLink("https://twitter.com/{$username}")
+        ->setDescription("Twitter timeline feed from {$username}")
+        ->setLanguage('en')
+        ->setTtl(40)
+    ;
+    $rss = $app['rss_service']->getRSS($channel, $timeline);
+
+    $response = new Response();
+    $response->setContent($rss);
+    $response->setStatusCode(Response::HTTP_OK);
+    $response->headers->set('Content-Type', 'text/plain');
+
+    return $response;
 });
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

@@ -1,10 +1,10 @@
 {
-    "name": "fabpot/silex-skeleton",
-    "description": "A pre-configured skeleton for the Silex microframework",
+    "name": "wcalderipe/twitter-rss",
+    "description": "A basic web application to parse Twitter data into RSS feed",
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "silex/silex": "~2.0@dev",
         "silex/web-profiler": "~2.0@dev",
         "symfony/browser-kit": "~2.3",
@@ -20,7 +20,9 @@
         "symfony/security": "~2.3",
         "symfony/translation": "~2.3",
         "symfony/twig-bridge": "~2.3",
-        "symfony/validator": "~2.3"
+        "symfony/validator": "~2.3",
+        "symfony/yaml": "~2.3",
+        "abraham/twitteroauth": "0.4.1"
     },
     "autoload": {
         "psr-0": { "": "src/" }
