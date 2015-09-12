@@ -81,8 +81,8 @@ class RSS
         $xml .= '<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:georss="http://www.georss.org/georss" xmlns:twitter="http://api.twitter.com" version="2.0">'  . PHP_EOL;
         $xml .=     "\t<channel>" . PHP_EOL;
         $xml .= $this->getChannel()
-            ->toXML()
-        ;
+            ->toXML();
+
         foreach ($this->tweets as $tweet) {
             $xml .= "\t\t<item>" . PHP_EOL;
             $xml .= $tweet->toXML();
