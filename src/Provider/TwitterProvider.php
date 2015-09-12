@@ -41,7 +41,7 @@ class TwitterProvider implements ServiceProviderInterface
 		return $this->connection;	
 	}
 
-    public function boot(Container $app)
-    {
-    }
+	public function boot(Container $app)
+	{
+	}
 }
